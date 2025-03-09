@@ -1,0 +1,21 @@
+{
+  "name": "endurance",
+  "displayName": "endurance",
+  "description": "A theme made for coding on OLED.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Endurance OLED",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Endurance OLED-color-theme.json"
+      }
+    ]
+  }
+}
