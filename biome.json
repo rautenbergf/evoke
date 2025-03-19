@@ -1,0 +1,79 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
+	"vcs": {
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignore": [
+			".yarn",
+			".pnp.cjs",
+			".pnp.loader.mjs",
+			"node_modules",
+			"output",
+			"dbschema",
+			"dist",
+			"graphql.types.ts",
+			"*.query.ts",
+			"tsconfig.json",
+			"package.json",
+			".swcrc",
+			"bin",
+			"drizzle",
+			"graphql-env.d.ts"
+		]
+	},
+	"organizeImports": {
+		"enabled": false
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"complexity": {
+				"noExtraBooleanCast": "warn",
+				"noBannedTypes": "off",
+				"noForEach": "off"
+			},
+			"correctness": {
+				"recommended": true
+			},
+			"performance": {
+				"noDelete": "warn"
+			},
+			"suspicious": {
+				"noDoubleEquals": "error",
+				"recommended": true,
+				"noExplicitAny": "off"
+			},
+			"a11y": {
+				"useKeyWithClickEvents": "off",
+				"noSvgWithoutTitle": "off",
+				"useAltText": "off",
+				"noAutofocus": "off"
+			},
+			"style": {
+				"noParameterAssign": "off",
+				"useTemplate": "warn",
+				"useBlockStatements": "warn",
+				"noUnusedTemplateLiteral": "warn",
+				"useShorthandArrayType": "warn",
+				"useSingleCaseStatement": "warn",
+				"noNonNullAssertion": "off",
+				"useImportType": "warn"
+			}
+		}
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"lineWidth": 100
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"trailingComma": "all",
+			"quoteProperties": "asNeeded",
+			"semicolons": "asNeeded"
+		}
+	}
+}

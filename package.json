@@ -1,11 +1,16 @@
 {
   "name": "endurance",
   "displayName": "endurance",
-  "description": "A theme made for coding on OLED.",
+  "description": "A high-contrast theme made for OLED screens.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.98.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rautenbergf/endurance"
+  },
+  "publisher": "rautenbergf",
   "categories": [
     "Themes"
   ],
@@ -17,5 +22,12 @@
         "path": "./themes/Endurance OLED-color-theme.json"
       }
     ]
+  },
+  "dependencies": {
+    "@types/bun": "^1.2.4",
+    "culori": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/culori": "^2.1.1"
   }
 }
