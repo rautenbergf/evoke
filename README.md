@@ -9,18 +9,18 @@ All variants are derived from the **BASE** variant.
 
 ### Evoke BASE
 
-![Evoke BASE](./img/base.png)
+![Evoke BASE](img/base.png)
 
 ### Evoke LAVENDER
-![Evoke LAVENDER](./img/lavender.png)
+![Evoke LAVENDER](img/lavender.png)
 
 ### Evoke ICE
-![Evoke ICE](./img/ice.png)
+![Evoke ICE](img/ice.png)
 
 
 ### Evoke BLACKLIGHT
-![Evoke BLACKLIGHT](./img/blacklight.png)
+![Evoke BLACKLIGHT](img/blacklight.png)
 
 ---
 
-<img src="./img/pukeko.png" alt="PARAMETRIZATION!!!!!" width="50"/>
+<img src="img/pukeko.png" alt="PARAMETRIZATION!!!!!" width="50"/>

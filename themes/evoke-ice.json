@@ -163,7 +163,8 @@
         "support.type",
         "entity.name.struct",
         "support.type.struct",
-        "markup.inline.raw"
+        "markup.inline.raw",
+        "storage.type"
       ],
       "settings": {
         "foreground": "#beae53ff"
@@ -218,7 +219,8 @@
         "constant.numeric",
         "support.constant.property-value",
         "markup.bold",
-        "constant.language.json"
+        "constant.language.json",
+        "constant.language.powershell"
       ],
       "settings": {
         "foreground": "#ff7b00ff"
