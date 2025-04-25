@@ -1,16 +1,20 @@
-# endurance README
+# Endurance Collection
 
-## Working with Markdown
+Endurance is an experimental collection of parametric dark themes.
+All variants are derived from the **BASE** variant. Every color mapping is thoughtfully optimized for semantic highlighting, making tokens and patterns easier to distinguish even in large codebases. 
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## Variants Preview
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+### Endurance BASE
 
-## For more information
+![Endurance BASE](./img/base.png)
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+### Endurance LAVENDER
+![Endurance LAVENDER](./img/lavender.png)
 
-**Enjoy!**
+### Endurance ICE
+![Endurance ICE](./img/ice.png)
+
+
+### Endurance BLACKLIGHT
+![Endurance BLACKLIGHT](./img/blacklight.png)

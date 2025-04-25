@@ -9,7 +9,7 @@ const config1 = {
 	highlight: '#002300',
 	line: '#303F3Faf',
 	lineTransparent: '#303D3D77',
-	selection: '#494A1C',
+	selection: '#303D3Dbf',
 	// NAMED
 	red: '#F83379',
 	redTransparent: '#F8337977',
@@ -167,6 +167,8 @@ const generate = (c: Config, unprocessed: Config) => ({
 		'editorWidget.border': c.line,
 		'editorWidget.foreground': c.cyan,
 		'editorWidget.resizeBorder': c.line,
+		// selection
+		'editor.selectionBackground': c.selection,
 	} as WorkbenchColors,
 	tokenColors: [
 		{
@@ -333,16 +335,9 @@ const flattenOKLCHLightness = (L: number, LMin: number, LMax: number, c: number)
 
 const preprocess = (c: Config, colorTransform?: (color: Oklch) => Oklch) => {
 	const o = Object.entries(c).reduce((acc, [k, v]) => {
-		const color = oklch(parseHex(v))
-		if (color.h) {
-			// #1
-			// color.h += 80
-			// color.c *= 1.25
-			// color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
-			// #2
-			color.h += 0
-			color.c *= 1.25
-			color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+		let color = oklch(parseHex(v))
+		if (colorTransform) {
+			color = colorTransform(color)
 		}
 
 		acc[k as keyof Config] = formatHex8(color)
@@ -352,25 +347,94 @@ const preprocess = (c: Config, colorTransform?: (color: Oklch) => Oklch) => {
 	return o
 }
 
+const quantize = (value: number, steps: number) => {
+	const step = 1 / steps
+	const q = Math.floor(value / step) * step
+	return q
+}
+
 const variants = {
 	base: (color: Oklch) => {
-		color.h = 0
-		color.c *= 1.25
-		color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+		if (color.h) {
+			color.h += 0
+			color.c *= 1.25
+			color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+		}
+
 		return color
 	},
-	cold: (color: Oklch) => {
+	ice: (color: Oklch) => {
 		if (!color.h) {
 			color.h = 0
 		}
 		color.h += 80
 		color.c *= 1.25
 		color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+
+		return color
+	},
+	mono: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+		color.c *= 0
+		if (color.l > 0.5) {
+			color.l *= color.l
+			color.l += 0.15
+		}
+		color.l = quantize(color.l, 3)
+		if (color.l < 0.1) {
+			color.l = 0
+		}
+		return color
+	},
+	lavender: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+		color.h *= 1.5
+		color.h = quantize(color.h, 6)
+		return color
+	},
+	blacklight: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+		color.h *= color.h
+		color.h -= 220
+		if (color.l < 0.1) {
+			color.l = 0
+		}
+		color.c *= 1.5
+		return color
+	},
+	pop: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+
+		const threshold = 0.05
+
+		if (color.c > threshold) {
+			color.c *= 2
+		}
+		if (color.c < threshold) {
+			color.c *= 0
+		}
+
+		if (color.c > threshold) {
+			color.l = quantize(color.l, 6) + 0.05
+		}
+
+		if (color.l < 0.1) {
+			color.l = 0
+		}
 		return color
 	},
 }
 
 type PkgTheme = {
+	id: string
 	label: string
 	uiTheme: string
 	path: string
@@ -381,18 +445,30 @@ Promise.all(
 		const nameCaps = name.toUpperCase()
 		const themePath = `themes/endurance-${name}.json`
 
+		console.log('⏳ Generating Endurance', nameCaps)
+
 		const generated = generate(preprocess(config1, transform), config1)
 		await Bun.write(themePath, JSON.stringify(generated, null, 2))
 
 		const pkg = await Bun.file('package.json').json()
 		const pkgThemes = pkg.contributes.themes as PkgTheme[]
 
+		console.log('✅ Generated Endurance Theme', nameCaps, 'at', themePath)
+
+		if (pkgThemes.some((t) => t.label === `Endurance ${nameCaps}`)) {
+			return
+		}
+
 		pkgThemes.push({
+			id: `endurance-${name}`,
 			label: `Endurance ${nameCaps}`,
 			uiTheme: 'vs-dark',
 			path: themePath,
 		})
 
-		console.log('✅ Successfully generated Endurance', nameCaps)
+		pkg.contributes.themes = pkgThemes
+		await Bun.write('package.json', JSON.stringify(pkg, null, 2))
+
+		console.log('✅ Added new Endurance', nameCaps, 'to package.json')
 	}),
 )

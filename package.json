@@ -1,11 +1,12 @@
 {
   "name": "endurance",
   "displayName": "endurance",
-  "description": "A high-contrast theme made for OLED screens.",
+  "description": "♾ A collection of parametric dark themes optimized for semantic highlighting.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.98.0"
   },
+  "icon": "img/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/rautenbergf/endurance"
@@ -17,9 +18,40 @@
   "contributes": {
     "themes": [
       {
+        "id": "endurance-base",
         "label": "Endurance BASE",
         "uiTheme": "vs-dark",
         "path": "./themes/endurance-base.json"
+      },
+      {
+        "id": "endurance-ice",
+        "label": "Endurance ICE",
+        "uiTheme": "vs-dark",
+        "path": "themes/endurance-ice.json"
+      },
+      {
+        "id": "endurance-mono",
+        "label": "Endurance MONO",
+        "uiTheme": "vs-dark",
+        "path": "themes/endurance-mono.json"
+      },
+      {
+        "id": "endurance-pop",
+        "label": "Endurance POP",
+        "uiTheme": "vs-dark",
+        "path": "themes/endurance-pop.json"
+      },
+      {
+        "id": "endurance-lavender",
+        "label": "Endurance LAVENDER",
+        "uiTheme": "vs-dark",
+        "path": "themes/endurance-lavender.json"
+      },
+      {
+        "id": "endurance-blacklight",
+        "label": "Endurance BLACKLIGHT",
+        "uiTheme": "vs-dark",
+        "path": "themes/endurance-blacklight.json"
       }
     ]
   },

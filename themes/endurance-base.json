@@ -110,7 +110,8 @@
     "editorWidget.background": "#010c01ff",
     "editorWidget.border": "#374a4aaf",
     "editorWidget.foreground": "#00b3b4ff",
-    "editorWidget.resizeBorder": "#374a4aaf"
+    "editorWidget.resizeBorder": "#374a4aaf",
+    "editor.selectionBackground": "#374848bf"
   },
   "tokenColors": [
     {
