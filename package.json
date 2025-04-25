@@ -1,7 +1,7 @@
 {
-  "name": "endurance",
-  "displayName": "endurance",
-  "description": "♾ A collection of parametric dark themes optimized for semantic highlighting.",
+  "name": "evoke",
+  "displayName": "evoke",
+  "description": "Collection of parametric dark themes optimized for semantic highlighting.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.98.0"
@@ -9,7 +9,7 @@
   "icon": "img/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rautenbergf/endurance"
+    "url": "https://github.com/rautenbergf/evoke"
   },
   "publisher": "rautenbergf",
   "categories": [
@@ -18,40 +18,40 @@
   "contributes": {
     "themes": [
       {
-        "id": "endurance-base",
-        "label": "Endurance BASE",
+        "id": "evoke-base",
+        "label": "Evoke BASE",
         "uiTheme": "vs-dark",
-        "path": "./themes/endurance-base.json"
+        "path": "./themes/evoke-base.json"
       },
       {
-        "id": "endurance-ice",
-        "label": "Endurance ICE",
+        "id": "evoke-ice",
+        "label": "Evoke ICE",
         "uiTheme": "vs-dark",
-        "path": "themes/endurance-ice.json"
+        "path": "themes/evoke-ice.json"
       },
       {
-        "id": "endurance-mono",
-        "label": "Endurance MONO",
+        "id": "evoke-mono",
+        "label": "Evoke MONO",
         "uiTheme": "vs-dark",
-        "path": "themes/endurance-mono.json"
+        "path": "themes/evoke-mono.json"
       },
       {
-        "id": "endurance-pop",
-        "label": "Endurance POP",
+        "id": "evoke-pop",
+        "label": "Evoke POP",
         "uiTheme": "vs-dark",
-        "path": "themes/endurance-pop.json"
+        "path": "themes/evoke-pop.json"
       },
       {
-        "id": "endurance-lavender",
-        "label": "Endurance LAVENDER",
+        "id": "evoke-lavender",
+        "label": "Evoke LAVENDER",
         "uiTheme": "vs-dark",
-        "path": "themes/endurance-lavender.json"
+        "path": "themes/evoke-lavender.json"
       },
       {
-        "id": "endurance-blacklight",
-        "label": "Endurance BLACKLIGHT",
+        "id": "evoke-blacklight",
+        "label": "Evoke BLACKLIGHT",
         "uiTheme": "vs-dark",
-        "path": "themes/endurance-blacklight.json"
+        "path": "themes/evoke-blacklight.json"
       }
     ]
   },

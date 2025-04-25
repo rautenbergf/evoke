@@ -32,7 +32,7 @@ const config1 = {
 type Config = typeof config1
 
 const generate = (c: Config, unprocessed: Config) => ({
-	name: 'Endurance OLED',
+	name: 'Evoke OLED',
 	colors: {
 		// general
 		focusBorder: c.green,
@@ -443,9 +443,9 @@ type PkgTheme = {
 Promise.all(
 	Object.entries(variants).map(async ([name, transform]) => {
 		const nameCaps = name.toUpperCase()
-		const themePath = `themes/endurance-${name}.json`
+		const themePath = `themes/evoke-${name}.json`
 
-		console.log('⏳ Generating Endurance', nameCaps)
+		console.log('⏳ Generating Evoke', nameCaps)
 
 		const generated = generate(preprocess(config1, transform), config1)
 		await Bun.write(themePath, JSON.stringify(generated, null, 2))
@@ -453,15 +453,15 @@ Promise.all(
 		const pkg = await Bun.file('package.json').json()
 		const pkgThemes = pkg.contributes.themes as PkgTheme[]
 
-		console.log('✅ Generated Endurance Theme', nameCaps, 'at', themePath)
+		console.log('✅ Generated Evoke Theme', nameCaps, 'at', themePath)
 
-		if (pkgThemes.some((t) => t.label === `Endurance ${nameCaps}`)) {
+		if (pkgThemes.some((t) => t.label === `Evoke ${nameCaps}`)) {
 			return
 		}
 
 		pkgThemes.push({
-			id: `endurance-${name}`,
-			label: `Endurance ${nameCaps}`,
+			id: `evoke-${name}`,
+			label: `Evoke ${nameCaps}`,
 			uiTheme: 'vs-dark',
 			path: themePath,
 		})
@@ -469,6 +469,6 @@ Promise.all(
 		pkg.contributes.themes = pkgThemes
 		await Bun.write('package.json', JSON.stringify(pkg, null, 2))
 
-		console.log('✅ Added new Endurance', nameCaps, 'to package.json')
+		console.log('✅ Added new Evoke', nameCaps, 'to package.json')
 	}),
 )

@@ -1,20 +1,26 @@
-# Endurance Collection
+# Evoke
 
-Endurance is an experimental collection of parametric dark themes.
-All variants are derived from the **BASE** variant. Every color mapping is thoughtfully optimized for semantic highlighting, making tokens and patterns easier to distinguish even in large codebases. 
+Evoke is an experimental collection of parametric dark themes.
+All variants are derived from the **BASE** variant.
+
+> Highlighting elements logically produces intuitive aesthetics matching stylistic traits using contrasts knowingly. Integration naturally tunes hues emphasizing balance resulting outstanding overlays making code layers organized, smoothly elevating themes.
 
 ## Variants Preview
 
-### Endurance BASE
+### Evoke BASE
 
-![Endurance BASE](./img/base.png)
+![Evoke BASE](./img/base.png)
 
-### Endurance LAVENDER
-![Endurance LAVENDER](./img/lavender.png)
+### Evoke LAVENDER
+![Evoke LAVENDER](./img/lavender.png)
 
-### Endurance ICE
-![Endurance ICE](./img/ice.png)
+### Evoke ICE
+![Evoke ICE](./img/ice.png)
 
 
-### Endurance BLACKLIGHT
-![Endurance BLACKLIGHT](./img/blacklight.png)
+### Evoke BLACKLIGHT
+![Evoke BLACKLIGHT](./img/blacklight.png)
+
+---
+
+<img src="./img/pukeko.png" alt="PARAMETRIZATION!!!!!" width="50"/>

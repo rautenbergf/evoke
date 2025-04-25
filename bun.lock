@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "endurance",
+      "name": "evoke",
       "dependencies": {
         "@types/bun": "^1.2.4",
         "culori": "^4.0.1",
