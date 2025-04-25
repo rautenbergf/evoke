@@ -17,9 +17,9 @@
   "contributes": {
     "themes": [
       {
-        "label": "Endurance OLED",
+        "label": "Endurance BASE",
         "uiTheme": "vs-dark",
-        "path": "./themes/Endurance OLED-color-theme.json"
+        "path": "./themes/endurance-base.json"
       }
     ]
   },

@@ -1,8 +1,6 @@
 import type { SemanticTokenColors, TextmateColor } from './vsc-types'
 import type { WorkbenchColors } from './vsc-workbench'
-import { formatHex8, oklch, parseHex } from 'culori'
-
-// NOTE: using vscode 1.95.3
+import { formatHex8, oklch, parseHex, type Oklch } from 'culori'
 
 const config1 = {
 	transparent: '#000000',
@@ -25,36 +23,10 @@ const config1 = {
 	cyanLight: '#8FECEC',
 	cyanHighlight: '#A2FFFF',
 	gray: '#94C1C1',
+	grayMid: '#5b8686',
 	grayDark: '#546262',
 	grayDarker: '#303D3D',
 	black: '#121B1B',
-}
-
-const config2 = {
-	transparent: '#00000000',
-	// bg: '#030300',
-	bg: '#000000',
-	fg: '#FDF6F3',
-	highlight: '#0B1D06',
-	line: '#363B34',
-	lineTransparent: '#363B3477',
-	selection: '#4F4719',
-	// NAMED
-	red: '#FC336D',
-	redTransparent: '#FC336D77',
-	pink: '#FC7FCD',
-	orange: '#ECA59A',
-	yellow: '#FFF019',
-	green: '#13CD00',
-	greenDark: '#0A8D2E',
-	cyanDark: '#257C5B',
-	cyan: '#0DB0A8',
-	cyanLight: '#A1E5E1',
-	cyanHighlight: '#B7F6F3',
-	gray: '#9FBEB6',
-	grayDark: '#5C6054',
-	grayDarker: '#363B34',
-	black: '#171916',
 }
 
 type Config = typeof config1
@@ -225,7 +197,7 @@ const generate = (c: Config, unprocessed: Config) => ({
 		},
 		{
 			scope: ['comment'],
-			settings: { foreground: c.line },
+			settings: { foreground: c.grayMid },
 		},
 		{
 			scope: [
@@ -306,7 +278,7 @@ const generate = (c: Config, unprocessed: Config) => ({
 		},
 		{
 			scope: ['comment.documentation'],
-			settings: { foreground: c.grayDark },
+			settings: { foreground: c.grayMid },
 		},
 		{
 			scope: ['storage.modifier'],
@@ -315,7 +287,7 @@ const generate = (c: Config, unprocessed: Config) => ({
 	] as TextmateColor[],
 	semanticHighlighting: true,
 	semanticTokenColors: {
-		comment: c.grayDarker,
+		comment: c.grayMid,
 		type: c.orange,
 		typeAlias: c.orange,
 		typeParameter: c.orange,
@@ -359,12 +331,16 @@ const flattenOKLCHLightness = (L: number, LMin: number, LMax: number, c: number)
 	return LMin + (LMax - LMin) * ((L - LMin) / (LMax - LMin)) ** (1 - c)
 }
 
-const preprocess = (c: Config) => {
+const preprocess = (c: Config, colorTransform?: (color: Oklch) => Oklch) => {
 	const o = Object.entries(c).reduce((acc, [k, v]) => {
 		const color = oklch(parseHex(v))
 		if (color.h) {
 			// #1
-			color.h += 80
+			// color.h += 80
+			// color.c *= 1.25
+			// color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+			// #2
+			color.h += 0
 			color.c *= 1.25
 			color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
 		}
@@ -376,6 +352,47 @@ const preprocess = (c: Config) => {
 	return o
 }
 
-const generated = generate(preprocess(config1), config1)
+const variants = {
+	base: (color: Oklch) => {
+		color.h = 0
+		color.c *= 1.25
+		color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+		return color
+	},
+	cold: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+		color.h += 80
+		color.c *= 1.25
+		color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+		return color
+	},
+}
 
-Bun.write('themes/Endurance OLED-color-theme.json', JSON.stringify(generated, null, 2))
+type PkgTheme = {
+	label: string
+	uiTheme: string
+	path: string
+}
+
+Promise.all(
+	Object.entries(variants).map(async ([name, transform]) => {
+		const nameCaps = name.toUpperCase()
+		const themePath = `themes/endurance-${name}.json`
+
+		const generated = generate(preprocess(config1, transform), config1)
+		await Bun.write(themePath, JSON.stringify(generated, null, 2))
+
+		const pkg = await Bun.file('package.json').json()
+		const pkgThemes = pkg.contributes.themes as PkgTheme[]
+
+		pkgThemes.push({
+			label: `Endurance ${nameCaps}`,
+			uiTheme: 'vs-dark',
+			path: themePath,
+		})
+
+		console.log('✅ Successfully generated Endurance', nameCaps)
+	}),
+)
