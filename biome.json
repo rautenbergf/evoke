@@ -1,29 +1,12 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
 	"vcs": {
-		"useIgnoreFile": true
+		"useIgnoreFile": true,
+		"clientKind": "git",
+		"enabled": true
 	},
 	"files": {
-		"ignore": [
-			".yarn",
-			".pnp.cjs",
-			".pnp.loader.mjs",
-			"node_modules",
-			"output",
-			"dbschema",
-			"dist",
-			"graphql.types.ts",
-			"*.query.ts",
-			"tsconfig.json",
-			"package.json",
-			".swcrc",
-			"bin",
-			"drizzle",
-			"graphql-env.d.ts"
-		]
-	},
-	"organizeImports": {
-		"enabled": false
+		"includes": ["*", "**"]
 	},
 	"linter": {
 		"enabled": true,
@@ -56,8 +39,6 @@
 				"useTemplate": "warn",
 				"useBlockStatements": "warn",
 				"noUnusedTemplateLiteral": "warn",
-				"useShorthandArrayType": "warn",
-				"useSingleCaseStatement": "warn",
 				"noNonNullAssertion": "off",
 				"useImportType": "warn"
 			}
@@ -68,10 +49,11 @@
 		"indentStyle": "tab",
 		"lineWidth": 100
 	},
+	"root": true,
 	"javascript": {
 		"formatter": {
+			"enabled": true,
 			"quoteStyle": "single",
-			"trailingComma": "all",
 			"quoteProperties": "asNeeded",
 			"semicolons": "asNeeded"
 		}

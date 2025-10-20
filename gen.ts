@@ -1,6 +1,6 @@
-import type { SemanticTokenColors, TextmateColor } from './vsc-types'
-import type { WorkbenchColors } from './vsc-workbench'
 import { formatHex8, oklch, parseHex, type Oklch } from 'culori'
+import { generateVscodeTheme } from './src/vscode-theme'
+import { generateZedTheme } from './src/zed/zed-theme'
 
 const config1 = {
 	transparent: '#000000',
@@ -31,305 +31,7 @@ const config1 = {
 
 type Config = typeof config1
 
-const generate = (c: Config, unprocessed: Config) => ({
-	name: 'Evoke OLED',
-	colors: {
-		// general
-		focusBorder: c.green,
-		'editor.foldBackground': c.lineTransparent,
-		'editor.background': c.bg,
-		'editor.foreground': c.fg,
-		'editorLineNumber.foreground': c.line,
-		'editorLineNumber.activeForeground': c.green,
-		'editorGroup.emptyBackground': c.bg,
-		'welcomePage.background': c.bg,
-		'panel.background': c.bg,
-		'panel.border': c.line,
-		'commandCenter.background': c.bg,
-		'commandCenter.foreground': c.grayDark,
-		'editorGroupHeader.tabsBackground': c.bg,
-		'editorGroupHeader.noTabsBackground': c.bg,
-		'tree.indentGuidesStroke': c.grayDark,
-		'editorIndentGuide.activeBackground1': c.line,
-		'editorIndentGuide.background1': c.black,
-		// buttons
-		'button.background': c.grayDark,
-		'button.foreground': c.fg,
-		'button.secondaryBackground': c.grayDarker,
-		'button.secondaryForeground': c.fg,
-		// git
-		'gitDecoration.addedResourceForeground': c.cyan,
-
-		'gitDecoration.untrackedResourceForeground': c.yellow,
-		'gitDecoration.modifiedResourceForeground': c.cyan,
-		'gitDecoration.deletedResourceForeground': c.red,
-		'gitDecoration.conflictingResourceForeground': c.pink,
-		'gitDecoration.ignoredResourceForeground': c.grayDark,
-		'gitDecoration.submoduleResourceForeground': c.cyanHighlight,
-		// gutter
-		'editorGutter.background': c.bg,
-		'editorGutter.addedBackground': c.green,
-		'editorGutter.deletedBackground': c.red,
-		'editorGutter.modifiedBackground': c.cyan,
-		// bracket pairs
-		'editorBracketHighlight.foreground1': c.cyan,
-		'editorBracketHighlight.foreground2': c.pink,
-		'editorBracketHighlight.foreground3': c.orange,
-		// menu
-		'menu.background': c.bg,
-		'menu.selectionBackground': c.grayDarker,
-		'menu.separatorBackground': c.grayDarker,
-		'menu.border': c.grayDarker,
-		'menu.foreground': c.fg,
-		// breadcrumbs
-		'breadcrumb.background': c.bg,
-		'breadcrumb.focusForeground': c.gray,
-		'breadcrumb.foreground': c.grayDark,
-		// activity bar
-		'activityBarBadge.background': c.greenDark,
-		'activityBar.background': c.bg,
-		'activityBar.border': c.line,
-		'activityBar.foreground': c.gray,
-		// tabs
-		'tab.inactiveBackground': c.bg,
-		'tab.unfocusedActiveBackground': c.black,
-		'tab.border': c.transparent,
-		'tab.activeBorderTop': c.grayDark,
-		// title
-		'titleBar.activeBackground': c.bg,
-		'titleBar.inactiveBackground': c.bg,
-		'titleBar.inactiveForeground': c.grayDark,
-		'titleBar.border': c.line,
-		// sidebar
-		'sideBar.border': c.line,
-		'sideBarTitle.foreground': c.grayDark,
-		'sideBarSectionHeader.background': c.bg,
-		'sideBar.background': c.bg,
-		// statusbar
-		'statusBar.background': c.bg,
-		'statusBar.foreground': c.grayDark,
-		'statusBar.border': c.line,
-		// list
-		'list.activeSelectionBackground': c.lineTransparent,
-		'list.activeSelectionForeground': c.fg,
-		'list.inactiveFocusBackground': c.grayDark,
-		'list.inactiveSelectionBackground': c.black,
-		'list.hoverBackground': c.black,
-		'list.highlightForeground': c.green,
-		'list.focusBackground': c.gray,
-		'list.focusOutline': c.green,
-		'list.deemphasizedForeground': c.grayDark,
-		// find
-		'editor.findMatchBackground': c.redTransparent,
-		'editorOverviewRuler.findMatchForeground': c.redTransparent,
-		'editor.findMatchHighlightBackground': c.lineTransparent,
-		// suggest
-		'editorSuggestWidget.background': c.bg,
-		'editorSuggestWidget.foreground': c.fg,
-		'editorSuggestWidget.highlightForeground': c.green,
-		'editorSuggestWidget.focusHighlightForeground': c.green,
-		'editorSuggestWidget.selectedForeground': c.green,
-		'editorSuggestWidget.selectedIconForeground': c.green,
-		'editorSuggestWidget.border': c.line,
-		'editorSuggestWidget.selectedBackground': c.lineTransparent,
-		// input
-		'input.background': c.bg,
-		'input.foreground': c.fg,
-		'input.border': c.grayDarker,
-		// hoverwidget
-		'editorHoverWidget.background': c.bg,
-		'editorHoverWidget.border': c.line,
-		// links
-		'editorLink.activeForeground': c.red,
-		'editorLink.foreground': c.red,
-		'textLink.activeForeground': c.red,
-		'textLink.foreground': c.red,
-		// errors
-		'editorError.foreground': unprocessed.red,
-		'list.errorForeground': unprocessed.red,
-		'minimap.errorHighlight': unprocessed.red,
-		'notificationsErrorIcon.foreground': unprocessed.red,
-		'editorOverviewRuler.errorForeground': unprocessed.red,
-
-		'editorInfo.foreground': unprocessed.cyan,
-		'list.infoForeground': unprocessed.cyan,
-		'minimap.infoHighlight': unprocessed.cyan,
-		'notificationsInfoIcon.foreground': unprocessed.cyan,
-		'editorOverviewRuler.infoForeground': unprocessed.cyan,
-
-		'editorWarning.foreground': unprocessed.yellow,
-		'list.warningForeground': unprocessed.yellow,
-		'minimap.warningHighlight': unprocessed.yellow,
-		'notificationsWarningIcon.foreground': unprocessed.yellow,
-		'editorOverviewRuler.warningForeground': unprocessed.yellow,
-		// file picker
-		'editorWidget.background': c.bg,
-		'editorWidget.border': c.line,
-		'editorWidget.foreground': c.cyan,
-		'editorWidget.resizeBorder': c.line,
-		// selection
-		'editor.selectionBackground': c.selection,
-	} as WorkbenchColors,
-	tokenColors: [
-		{
-			scope: [
-				'punctuation',
-				'meta.bracket',
-				'meta.brace',
-				'punctuation.section.braces',
-				'punctuation.section.brackets',
-				'meta.parenthesis',
-				'punctuation.section.parens',
-			],
-			settings: {
-				foreground: c.gray,
-			},
-		},
-		{
-			scope: ['keyword.operator', 'storage.type', 'meta.link'],
-			settings: {
-				foreground: c.green,
-			},
-		},
-		{
-			scope: ['keyword.operator.namespace'],
-			settings: {
-				foreground: c.gray,
-			},
-		},
-		{
-			scope: ['comment'],
-			settings: { foreground: c.grayMid },
-		},
-		{
-			scope: [
-				'entity.name.type',
-				'entity.name.class',
-				'support.class',
-				'entity.name.type.alias',
-				'support.type',
-				'entity.name.struct',
-				'support.type.struct',
-				'markup.inline.raw',
-				'storage.type',
-			],
-			settings: { foreground: c.orange },
-		},
-		{
-			scope: ['entity.name.tag'],
-			settings: { foreground: c.greenDark },
-		},
-		{
-			scope: [
-				'meta.tag.attributes',
-				'support.type.property-name.toml',
-				'support.type.property-name.array',
-				'support.type.property-name.table',
-			],
-			settings: { foreground: c.fg },
-		},
-		{
-			scope: [
-				'support.class.component',
-				'entity.other.attribute-name.pseudo-element',
-				'entity.other.attribute-name.pseudo-class',
-			],
-			settings: { foreground: c.orange },
-		},
-		{
-			scope: [
-				'entity.name.function',
-				'support.function',
-				'variable.function',
-				'entity.name.macro',
-				'entity.other.attribute-name.class',
-				'heading',
-			],
-			settings: { foreground: c.cyanLight, fontStyle: 'bold' },
-		},
-		{
-			scope: [
-				'variable.other.enummember',
-				'constant.numeric',
-				'support.constant.property-value',
-				'markup.bold',
-				'constant.language.json',
-				'constant.language.powershell',
-			],
-			settings: { foreground: c.pink },
-		},
-		{
-			scope: ['keyword', 'keyword.operator'],
-			settings: { foreground: c.green },
-		},
-		{
-			scope: ['support.type.property-name'],
-			settings: {
-				foreground: c.gray,
-			},
-		},
-		{
-			scope: [
-				'variable.annotation',
-				'meta.decorator',
-				'punctuation.definition.string',
-				'string.quoted',
-				'string.template',
-				'entity.name.function.call',
-				'support.function.call',
-			],
-			settings: { foreground: c.cyan },
-		},
-		{
-			scope: ['comment.documentation'],
-			settings: { foreground: c.grayMid },
-		},
-		{
-			scope: ['storage.modifier'],
-			settings: { fontStyle: 'bold' },
-		},
-	] as TextmateColor[],
-	semanticHighlighting: true,
-	semanticTokenColors: {
-		comment: c.grayMid,
-		type: c.orange,
-		typeAlias: c.orange,
-		typeParameter: c.orange,
-		function: {
-			bold: true,
-			foreground: c.cyanLight,
-		},
-		method: c.cyanLight,
-		const: c.pink,
-		enum: c.orange,
-		enumMember: c.pink,
-		string: c.cyan,
-		operator: c.green,
-		keyword: c.green,
-		macro: c.cyanLight,
-		deriveHelper: c.orange,
-		decorator: c.cyan,
-		punctuation: c.grayDark,
-		brace: c.grayDark,
-		bracket: c.gray,
-		parenthesis: c.gray,
-		number: c.pink,
-		struct: c.orange,
-		'variable.defaultLibrary': {
-			underline: true,
-		},
-		'*.documentation': c.grayDark,
-		'*.constant': c.pink,
-		'*.callable': c.cyan,
-		'*.modification': {
-			bold: true,
-		},
-		'*.readonly': {
-			bold: true,
-		},
-		label: c.pink,
-	} as SemanticTokenColors,
-})
+export type Generator<Output> = (c: Config, unprocessed: Config, name: string) => Output
 
 const flattenOKLCHLightness = (L: number, LMin: number, LMax: number, c: number): number => {
 	return LMin + (LMax - LMin) * ((L - LMin) / (LMax - LMin)) ** (1 - c)
@@ -354,6 +56,10 @@ const quantize = (value: number, steps: number) => {
 	const q = Math.floor(value / step) * step
 	return q
 }
+
+/** Function that maps a value to the closest step in a given array */
+const alignMap = (value: number, steps: number[]): number =>
+	steps.reduce((a, b) => (Math.abs(b - value) < Math.abs(a - value) ? b : a))
 
 const variants = {
 	base: (color: Oklch) => {
@@ -433,6 +139,74 @@ const variants = {
 		}
 		return color
 	},
+	cosmos: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+
+		if (color.c < 0.05) {
+			color.c = 0
+		}
+
+		color.l = alignMap(color.l, [0, 0.34, 0.5, 0.85])
+
+		color.h = Math.sin(color.h * Math.PI) * 360
+		color.h *= 1.5
+		color.h += 340
+
+		color.c *= 1.25
+
+		return color
+	},
+	poise: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+
+		color.h = Math.tan(color.h) * 50
+		color.h += 100
+
+		if (color.c < 0.05) {
+			color.c = 0
+		}
+
+		color.l = alignMap(color.l, [0, 0.34, 0.5, 0.85])
+
+		// color.h = Math.sin(color.h * Math.PI) * 360
+		color.h *= 1.5
+		color.h += 340
+
+		color.c *= 1.25
+
+		return color
+	},
+	copper: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+
+		// split
+		if (color.h > 180) {
+			color.h = (color.h % 60) + 60
+		} else {
+			color.h = (color.h % 120) + 120
+		}
+
+		// if (color.l < 0.1) {
+		// 	color.c = 0
+		// 	color.l = 0
+		// }
+
+		color.l = alignMap(color.l, [0.1, 0.3, 0.5, 0.85])
+
+		// color.h *= 2.8
+		color.h *= 2.91
+		// color.h *= 1.5
+		color.c *= 1.25
+		// color.l = flattenOKLCHLightness(color.l, 0, 0.6, 0.2)
+
+		return color
+	},
 }
 
 type PkgTheme = {
@@ -442,35 +216,55 @@ type PkgTheme = {
 	path: string
 }
 
-Promise.all(
-	Object.entries(variants).map(async ([name, transform]) => {
-		const nameCaps = name.toUpperCase()
-		const themePath = `themes/evoke-${name}.json`
+const writeVscodeThemes = async () => {
+	Promise.all(
+		Object.entries(variants).map(async ([name, transform]) => {
+			const nameCaps = name.toUpperCase()
+			const themePath = `themes/evoke-${name}.json`
 
-		console.log('⏳ Generating Evoke', nameCaps)
+			console.log('⏳ Vscode: Generating Evoke', nameCaps)
 
-		const generated = generate(preprocess(config1, transform), config1)
-		await Bun.write(themePath, JSON.stringify(generated, null, 2))
+			const generated = generateVscodeTheme(preprocess(config1, transform), config1, nameCaps)
+			await Bun.write(themePath, JSON.stringify(generated, null, 2))
 
-		const pkg = await Bun.file('package.json').json()
-		const pkgThemes = pkg.contributes.themes as PkgTheme[]
+			const pkg = await Bun.file('package.json').json()
+			const pkgThemes = pkg.contributes.themes as PkgTheme[]
 
-		console.log('✅ Generated Evoke Theme', nameCaps, 'at', themePath)
+			console.log('✅ Generated Evoke Theme', nameCaps, 'at', themePath)
 
-		if (pkgThemes.some((t) => t.label === `Evoke ${nameCaps}`)) {
-			return
-		}
+			if (pkgThemes.some((t) => t.label === `Evoke ${nameCaps}`)) {
+				return
+			}
 
-		pkgThemes.push({
-			id: `evoke-${name}`,
-			label: `Evoke ${nameCaps}`,
-			uiTheme: 'vs-dark',
-			path: themePath,
-		})
+			pkgThemes.push({
+				id: `evoke-${name}`,
+				label: `Evoke ${nameCaps}`,
+				uiTheme: 'vs-dark',
+				path: themePath,
+			})
 
-		pkg.contributes.themes = pkgThemes
-		await Bun.write('package.json', JSON.stringify(pkg, null, 2))
+			pkg.contributes.themes = pkgThemes
+			await Bun.write('package.json', JSON.stringify(pkg, null, 2))
 
-		console.log('✅ Added new Evoke', nameCaps, 'to package.json')
-	}),
-)
+			console.log('✅ Added new Evoke', nameCaps, 'to package.json')
+		}),
+	)
+}
+
+const writeZedThemes = async () => {
+	Promise.all(
+		Object.entries(variants).map(async ([name, transform]) => {
+			const nameCaps = name.toUpperCase()
+			const themePath = `zed-themes/evoke-${name}.json`
+
+			console.log('⏳ Zed: Generating Evoke', nameCaps)
+
+			const generated = generateZedTheme(preprocess(config1, transform), config1, nameCaps)
+			await Bun.write(themePath, JSON.stringify(generated, null, 2))
+
+			console.log('✅ Zed: Generated Evoke Theme', nameCaps, 'at', themePath)
+		}),
+	)
+}
+
+await writeZedThemes()

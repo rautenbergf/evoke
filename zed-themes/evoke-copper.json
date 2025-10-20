@@ -1,0 +1,144 @@
+{
+  "author": "rautenbergf",
+  "name": "Evoke",
+  "themes": [
+    {
+      "name": "Evoke COPPER",
+      "appearance": "dark",
+      "style": {
+        "status_bar.background": "#0b0100ff",
+        "background": "#0b0100ff",
+        "text": "#a3d7eaff",
+        "text.placeholder": "#223036ff",
+        "text.muted": "#56666cff",
+        "text.accent": "#ff7100ff",
+        "element.background": "#0b0100ff",
+        "editor.gutter.background": "#0b0100ff",
+        "tab.active_background": "#223036ff",
+        "tab.inactive_background": "#0b0100ff",
+        "title_bar.background": "#0b0100ff",
+        "title_bar.inactive_background": "#0b0100ff",
+        "panel.background": "#0b0100ff",
+        "tab_bar.background": "#0b0100ff",
+        "background.appearance": "opaque",
+        "editor.background": "#0b0100ff",
+        "editor.foreground": "#cececeff",
+        "surface.background": "#0b0100ff",
+        "elevated_surface.background": "#0b0100ff",
+        "toolbar.background": "#0b0100ff",
+        "editor.indent_guide": "#203137af",
+        "editor.indent_guide_active": "#223036ff",
+        "editor.line_number": "#223036ff",
+        "editor.active_line_number": "#a3d7eaff",
+        "editor.hover_line_number": "#56666cff",
+        "border": "#203137af",
+        "border.focused": "#56666cff",
+        "border.selected": "#a3d7eaff",
+        "element.selected": "#223036ff",
+        "element.hover": "#223036ff",
+        "accents": [
+          "#ff7100ff"
+        ],
+        "created": "#98ccffcc",
+        "created.background": "#98ccff3d",
+        "deleted": "#d40047ff",
+        "deleted.background": "#d400473d",
+        "conflict": "#eaa3ffff",
+        "conflict.background": "#eaa3ff3d",
+        "ignored": "#56666cff",
+        "ignored.background": "#56666c3d",
+        "modified": "#1be4ffcc",
+        "modified.background": "#1be4ff3d",
+        "ghost_element.background": "#00000000",
+        "ghost_element.hover": "#2d2f34ff",
+        "ghost_element.active": "#3e4043ff",
+        "ghost_element.selected": "#3e4043ff",
+        "ghost_element.disabled": "#1f2127ff",
+        "scrollbar.thumb.background": "#ffffff36",
+        "scrollbar.thumb.hover_background": "#ffffff50",
+        "scrollbar.thumb.border": "#203137af",
+        "scrollbar.track.background": "#00000000",
+        "scrollbar.track.border": "#203137af",
+        "error": "#F83379",
+        "warning": "#D3B857",
+        "info": "#00B5B5",
+        "players": [
+          {
+            "cursor": "#ff7100ff",
+            "background": "#ff7100ff",
+            "selection": "#ff71003d"
+          },
+          {
+            "cursor": "#ffb68fff",
+            "background": "#ffb68fff",
+            "selection": "#ffb68f3d"
+          },
+          {
+            "cursor": "#eaa3ffff",
+            "background": "#eaa3ffff",
+            "selection": "#eaa3ff3d"
+          },
+          {
+            "cursor": "#1be4ffff",
+            "background": "#1be4ffff",
+            "selection": "#1be4ff3d"
+          }
+        ],
+        "syntax": {
+          "attribute": {
+            "color": "#a3d7eaff"
+          },
+          "boolean": {
+            "color": "#eaa3ffff"
+          },
+          "comment": {
+            "color": "#3a6b7bff"
+          },
+          "comment.doc": {
+            "color": "#3a6b7bff"
+          },
+          "constant": {
+            "color": "#eaa3ffff"
+          },
+          "enum": {
+            "color": "#ffb68fff"
+          },
+          "function": {
+            "color": "#70dfffff",
+            "font_weight": 800
+          },
+          "link_text": {
+            "color": "#ff7100ff"
+          },
+          "link_uri": {
+            "color": "#eaa3ffff"
+          },
+          "number": {
+            "color": "#eaa3ffff"
+          },
+          "operator": {
+            "color": "#ff7100ff"
+          },
+          "property": {
+            "color": "#a3d7eaff"
+          },
+          "punctuation": {
+            "color": "#a3d7eaff"
+          },
+          "string": {
+            "color": "#1be4ffff"
+          },
+          "type": {
+            "color": "#ffb68fff"
+          },
+          "keyword": {
+            "color": "#ff7100ff"
+          },
+          "tag": {
+            "color": "#935200ff"
+          }
+        }
+      }
+    }
+  ]
+}
