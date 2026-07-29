@@ -12,10 +12,13 @@ const config1 = {
 	selection: '#303D3Dbf',
 	// NAMED
 	red: '#F83379',
+	redDark: '#610E2B',
 	redTransparent: '#F8337977',
 	pink: '#FF7DCF',
 	orange: '#EEA2A2',
+	orangeDark: '#6F342A',
 	yellow: '#D3B857',
+	yellowDark: '#705D16',
 	green: '#00D700',
 	greenDark: '#008D48',
 	cyanDark: '#1C7D6C',
@@ -57,9 +60,18 @@ const quantize = (value: number, steps: number) => {
 	return q
 }
 
+export function triangleWave(x: number, period: number, amplitude: number = 1): number {
+	const normalized = x / period
+	const folded = normalized - Math.floor(normalized + 0.5)
+	return amplitude * (2 * Math.abs(2 * folded) - 1)
+}
+
 /** Function that maps a value to the closest step in a given array */
 const alignMap = (value: number, steps: number[]): number =>
 	steps.reduce((a, b) => (Math.abs(b - value) < Math.abs(a - value) ? b : a))
+
+const rand = Math.random() * 360
+console.log('#------------ RAND:', rand)
 
 const variants = {
 	base: (color: Oklch) => {
@@ -157,6 +169,40 @@ const variants = {
 		color.c *= 1.25
 
 		return color
+	},
+	basil: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+
+		color.h = triangleWave(color.h, 2, 2) * 360
+		color.h = Math.sin(color.h) * 180
+		color.h += 230
+		color.l = alignMap(color.l, [0.15, 0.34, 0.5, 0.85])
+		if (color.c < 0.05) {
+			color.c *= 0.2
+		} else {
+			color.c *= 1.5
+		}
+
+		return color
+	},
+	pace: (color: Oklch) => {
+		if (!color.h) {
+			color.h = 0
+		}
+
+		// color.h = 0
+		// color.l = alignMap(color.l, [0.15, 0.34, 0.5, 0.85])
+		color.h = alignMap((color.h + 100) % 360, [175, 250, 300, 345, 360])
+		color.c *= 0.6 + (color.l * 0.4)
+		color.c *= 1.25
+
+		color.h *= color.h *= color.h
+		color.h += 145
+		color.l = Math.max(color.l, 0.14)
+
+		return color	
 	},
 	poise: (color: Oklch) => {
 		if (!color.h) {
@@ -268,3 +314,4 @@ const writeZedThemes = async () => {
 }
 
 await writeZedThemes()
+// await writeVscodeThemes()

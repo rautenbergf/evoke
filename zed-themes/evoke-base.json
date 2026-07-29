@@ -60,8 +60,14 @@
         "scrollbar.track.background": "#00000000",
         "scrollbar.track.border": "#374a4aaf",
         "error": "#F83379",
+        "error.background": "#610E2B",
         "warning": "#D3B857",
+        "warning.background": "#705D16",
         "info": "#00B5B5",
+        "info.background": "#303D3D",
+        "terminal.ansi.background": "#010c01ff",
+        "terminal.ansi.black": "#1b2727ff",
+        "terminal.foreground": "#f8f8f8ff",
         "players": [
           {
             "cursor": "#00d200ff",

@@ -1,90 +1,96 @@
 {
-	"name": "evoke",
-	"displayName": "evoke",
-	"description": "Collection of parametric dark themes optimized for semantic highlighting.",
-	"version": "0.0.4",
-	"engines": {
-		"vscode": "^1.98.0"
-	},
-	"icon": "img/icon.png",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/rautenbergf/evoke"
-	},
-	"publisher": "rautenbergf",
-	"categories": [
-		"Themes"
-	],
-	"contributes": {
-		"themes": [
-			{
-				"id": "evoke-base",
-				"label": "Evoke BASE",
-				"uiTheme": "vs-dark",
-				"path": "./themes/evoke-base.json"
-			},
-			{
-				"id": "evoke-ice",
-				"label": "Evoke ICE",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-ice.json"
-			},
-			{
-				"id": "evoke-mono",
-				"label": "Evoke MONO",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-mono.json"
-			},
-			{
-				"id": "evoke-pop",
-				"label": "Evoke POP",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-pop.json"
-			},
-			{
-				"id": "evoke-lavender",
-				"label": "Evoke LAVENDER",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-lavender.json"
-			},
-			{
-				"id": "evoke-blacklight",
-				"label": "Evoke BLACKLIGHT",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-blacklight.json"
-			},
-			{
-				"id": "evoke-carrot",
-				"label": "Evoke CARROT",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-carrot.json"
-			},
-			{
-				"id": "evoke-copper",
-				"label": "Evoke COPPER",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-copper.json"
-			},
-			{
-				"id": "evoke-cosmos",
-				"label": "Evoke COSMOS",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-cosmos.json"
-			},
-			{
-				"id": "evoke-lavender_light",
-				"label": "Evoke LAVENDER_LIGHT",
-				"uiTheme": "vs-dark",
-				"path": "themes/evoke-lavender_light.json"
-			}
-		]
-	},
-	"dependencies": {
-		"@types/bun": "^1.2.4",
-		"culori": "^4.0.1"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "2.1.4",
-		"@types/culori": "^2.1.1"
-	}
+  "name": "evoke",
+  "displayName": "evoke",
+  "description": "Collection of parametric dark themes optimized for semantic highlighting.",
+  "version": "0.0.4",
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "icon": "img/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rautenbergf/evoke"
+  },
+  "publisher": "rautenbergf",
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "id": "evoke-base",
+        "label": "Evoke BASE",
+        "uiTheme": "vs-dark",
+        "path": "./themes/evoke-base.json"
+      },
+      {
+        "id": "evoke-ice",
+        "label": "Evoke ICE",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-ice.json"
+      },
+      {
+        "id": "evoke-mono",
+        "label": "Evoke MONO",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-mono.json"
+      },
+      {
+        "id": "evoke-pop",
+        "label": "Evoke POP",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-pop.json"
+      },
+      {
+        "id": "evoke-lavender",
+        "label": "Evoke LAVENDER",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-lavender.json"
+      },
+      {
+        "id": "evoke-blacklight",
+        "label": "Evoke BLACKLIGHT",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-blacklight.json"
+      },
+      {
+        "id": "evoke-carrot",
+        "label": "Evoke CARROT",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-carrot.json"
+      },
+      {
+        "id": "evoke-copper",
+        "label": "Evoke COPPER",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-copper.json"
+      },
+      {
+        "id": "evoke-cosmos",
+        "label": "Evoke COSMOS",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-cosmos.json"
+      },
+      {
+        "id": "evoke-lavender_light",
+        "label": "Evoke LAVENDER_LIGHT",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-lavender_light.json"
+      },
+      {
+        "id": "evoke-basil",
+        "label": "Evoke BASIL",
+        "uiTheme": "vs-dark",
+        "path": "themes/evoke-basil.json"
+      }
+    ]
+  },
+  "dependencies": {
+    "@types/bun": "^1.2.4",
+    "culori": "^4.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.4",
+    "@types/culori": "^2.1.1"
+  }
 }

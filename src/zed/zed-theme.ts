@@ -61,8 +61,15 @@ export const generateZedTheme: Generator<ZedThemeFamily> = (c, unprocessed, name
 				'scrollbar.track.background': '#00000000',
 				'scrollbar.track.border': c.line,
 				error: unprocessed.red,
+				'error.background': unprocessed.redDark,
 				warning: unprocessed.yellow,
+				'warning.background': unprocessed.yellowDark,
 				info: unprocessed.cyan,
+				'info.background': unprocessed.grayDarker,
+				// Terminal
+				'terminal.ansi.background': c.bg,
+				'terminal.ansi.black': c.black,
+				'terminal.foreground': c.fg,
 				players: [
 					{
 						cursor: c.green,
